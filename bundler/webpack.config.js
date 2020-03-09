@@ -10,17 +10,18 @@ module.exports = {
     {
         contentBase: './dist',
         open: true,
-        host: '0.0.0.0'
+        host: '0.0.0.0',
+        useLocalIp: true
     },
     plugins:
-    [
-        new CopyWebpackPlugin([ { from: 'static' } ]),
-        new MiniCssExtractPlugin(),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html')
-        })
-    ],
+        [
+            new CopyWebpackPlugin([{ from: 'static' }]),
+            new MiniCssExtractPlugin(),
+            new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, '../src/index.html')
+            })
+        ],
     entry: path.resolve(__dirname, '../src/index.js'),
     output:
     {
@@ -30,44 +31,44 @@ module.exports = {
     module:
     {
         rules:
-        [
-            {
-                test: /\.html$/,
-                use: ['html-loader']
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
-            },
-            {
-                test: /\.styl$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                use:
-                [
-                    {
-                        loader: 'file-loader',
-                        options: { outputPath: 'images/' }
-                    }
-                ]
-            },
-            {
-                test: /\.(ttf|otf|woff|woff2|eot)$/,
-                use:
-                [
-                    {
-                        loader: 'file-loader',
-                        options: { outputPath: 'fonts/' }
-                    }
-                ]
-            }
-        ]
+            [
+                {
+                    test: /\.html$/,
+                    use: ['html-loader']
+                },
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    use: ['babel-loader']
+                },
+                {
+                    test: /\.css$/,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader']
+                },
+                {
+                    test: /\.styl$/,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
+                },
+                {
+                    test: /\.(png|jpg|gif|svg)$/,
+                    use:
+                        [
+                            {
+                                loader: 'file-loader',
+                                options: { outputPath: 'images/' }
+                            }
+                        ]
+                },
+                {
+                    test: /\.(ttf|otf|woff|woff2|eot)$/,
+                    use:
+                        [
+                            {
+                                loader: 'file-loader',
+                                options: { outputPath: 'fonts/' }
+                            }
+                        ]
+                }
+            ]
     }
 }
